@@ -1,5 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
+# =====================================================================
+# 【中文导览】youtube_dl/YoutubeDL.py —— youtube-dl 核心调度模块(汉化注释)
+# 本文件源自 [ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl),
+# 此处仅新增中文说明注释,不改动任何原有逻辑;英文原版以原项目为准。
+#
+# 核心类 YoutubeDL 是整个程序的调度中枢,主要职责:
+#   1. 保存运行参数 params(选项默认值见 __init__ 中的字典);
+#   2. extract_info():按 URL 分发到匹配的 InfoExtractor 提取媒体信息;
+#   3. process_ie_result():递归处理提取结果(video/playlist 等不同 result_type);
+#   4. process_video_result():规范化单个视频的 info_dict(格式检查、排序、筛选);
+#   5. process_info():真正执行下载(确定文件名、选格式、调下载器、跑后处理器)。
+# 下载器位于 youtube_dl/downloader/,提取器位于 youtube_dl/extractor/,
+# 通用工具函数位于 youtube_dl/utils.py。
+# =====================================================================
 
 from __future__ import absolute_import, unicode_literals
 
@@ -838,6 +852,8 @@ class YoutubeDL(object):
         for key, value in extra_info.items():
             info_dict.setdefault(key, value)
 
+    # 【汉化注释】提取总入口:根据 URL 选择合适的 InfoExtractor 并调用其提取逻辑,
+    # 返回视频或播放列表的 info_dict;download=True 时继续进入下载流程。
     def extract_info(self, url, download=True, ie_key=None, extra_info={},
                      process=True, force_generic_extractor=False):
         """
@@ -998,6 +1014,8 @@ class YoutubeDL(object):
             'extractor_key': ie.ie_key(),
         })
 
+    # 【汉化注释】递归处理提取器返回的结果:按 result_type(video/multi_video/playlist 等)
+    # 分别处理;播放列表会逐项展开,并受 playlist_items / playlistend 等选项过滤。
     def process_ie_result(self, ie_result, download=True, extra_info={}):
         """
         Take the result of the ie (may be modified) and resolve all unresolved
@@ -1642,6 +1660,8 @@ class YoutubeDL(object):
                 if info_dict.get('%s_number' % field) is not None and not info_dict.get(field):
                     info_dict[field] = '%s %d' % (field.capitalize(), info_dict['%s_number' % field])
 
+    # 【汉化注释】规范化单个视频信息:字段补全与清洗、formats 合法性检查与排序、
+    # 按选项筛选格式(如 format 选项)、处理缩略图/字幕/自动生成字幕等。
     def process_video_result(self, info_dict, download=True):
         assert info_dict.get('_type', 'video') == 'video'
 
@@ -1949,6 +1969,8 @@ class YoutubeDL(object):
             self.to_stdout(json.dumps(self.sanitize_info(info_dict)))
 
     @_catch_unsafe_file_extension
+    # 【汉化注释】真正触发下载:确定输出文件名(outtmpl)、选择最佳/指定格式、
+    # 调用 youtube_dl/downloader/ 下对应协议的下载器,最后执行后处理器(转码、合并、元数据等)。
     def process_info(self, info_dict):
         """Process a single resolved IE result."""
 
@@ -2245,6 +2267,8 @@ class YoutubeDL(object):
                 if self._num_downloads >= max_downloads:
                     raise MaxDownloadsReached()
 
+    # 【汉化注释】命令行的批量下载入口:逐个 URL 调用 extract_info(),
+    # 统一处理致命错误(DownloadError 等)并决定整体退出码。
     def download(self, url_list):
         """Download a given list of URLs."""
         outtmpl = self.params.get('outtmpl', DEFAULT_OUTTMPL)

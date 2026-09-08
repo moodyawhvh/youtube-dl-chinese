@@ -1,4 +1,17 @@
 # coding: utf-8
+# =====================================================================
+# 【中文导览】youtube_dl/extractor/common.py —— 提取器公共基类(汉化注释)
+# 本文件源自 [ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl),
+# 此处仅新增中文说明注释,不改动任何原有逻辑;英文原版以原项目为准。
+#
+# 核心类 InfoExtractor:所有站点提取器的公共基类,提供:
+#   - suitable():按 _VALID_URL 正则判断 URL 是否归本提取器处理;
+#   - _real_extract():子类必须实现的核心提取逻辑,返回 info_dict;
+#   - _download_webpage()/_download_json():统一的网页/接口下载入口(UA、重试、错误封装);
+#   - _search_regex()/_html_search_meta()/_og_search_*():网页字段提取辅助方法;
+#   - 地区限制、年龄限制、登录(netrc/Cookie/OAuth)等通用能力。
+# info_dict 各字段的权威说明见下方 InfoExtractor 类 docstring(保留英文原版)。
+# =====================================================================
 from __future__ import unicode_literals
 
 import base64
@@ -95,6 +108,8 @@ from ..utils import (
 )
 
 
+# 【汉化注释】提取器基类:各站点提取器(如 youtube.py 的 YoutubeIE)均继承本类。
+# 子类通常只需定义 _VALID_URL 并实现 _real_extract(),其余下载、解析、容错能力由本类提供。
 class InfoExtractor(object):
     """Information Extractor class.
 
@@ -617,6 +632,8 @@ class InfoExtractor(object):
         """Real initialization process. Redefine in subclasses."""
         pass
 
+    # 【汉化注释】子类必须实现:执行真正的信息提取并返回 info dict(可含 formats 列表)。
+    # 不要直接调用它,应通过 YoutubeDL.extract_info() 入口(由其处理匹配与调度)。
     def _real_extract(self, url):
         """Real extraction process. Redefine in subclasses."""
         pass
@@ -801,6 +818,8 @@ class InfoExtractor(object):
 
         return content
 
+    # 【汉化注释】下载网页的核心方法:统一处理 User-Agent、Cookie、编码、重定向、
+    # 重试与错误封装;返回 str,指定 expected_status 时可容忍异常状态码。
     def _download_webpage(
             self, url_or_request, video_id, note=None, errnote=None,
             fatal=True, tries=1, timeout=5, encoding=None, data=None,
@@ -930,6 +949,7 @@ class InfoExtractor(object):
             json_string, video_id, transform_source=transform_source,
             fatal=fatal), urlh
 
+    # 【汉化注释】下载并解析 JSON 接口:内部复用 _download_webpage,失败时抛 ExtractorError。
     def _download_json(
             self, url_or_request, video_id, note='Downloading JSON metadata',
             errnote='Unable to download JSON metadata', transform_source=None,
@@ -1060,6 +1080,8 @@ class InfoExtractor(object):
             video_info['description'] = playlist_description
         return video_info
 
+    # 【汉化注释】正则提取辅助:pattern 可为字符串/已编译正则/其列表(逐个尝试);
+    # default= 提供缺失回退值,fatal=False 时仅告警不中断提取。
     def _search_regex(self, pattern, string, name, default=NO_DEFAULT, fatal=True, flags=0, group=None):
         """
         Perform a regex search on the given string, using a single or a list of
@@ -1267,6 +1289,7 @@ class InfoExtractor(object):
     def _og_search_url(self, html, **kargs):
         return self._og_search_property('url', html, **kargs)
 
+    # 【汉化注释】提取 HTML <meta> 标签内容:name 可传列表,常用于 description 及 og: 系列字段。
     def _html_search_meta(self, name, html, display_name=None, fatal=False, **kwargs):
         if not isinstance(name, (list, tuple)):
             name = [name]
