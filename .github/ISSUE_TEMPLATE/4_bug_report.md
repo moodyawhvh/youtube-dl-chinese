@@ -1,44 +1,46 @@
 ---
-name: Bug report
-about: Report a bug unrelated to any particular site or extractor
+name: Bug 报告
+about: 报告与任何特定站点或提取器无关的 Bug
 title: ''
 ---
 
+> 🌐 本文档由 [ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl) 翻译,英文原版见原项目。
+
 <!--
 
 ######################################################################
-  WARNING!
-  IGNORING THE FOLLOWING TEMPLATE WILL RESULT IN ISSUE CLOSED AS INCOMPLETE
+  警告!
+  无视以下模板将导致 issue 以"不完整"为由被关闭
 ######################################################################
 
 -->
 
 
-## Checklist
+## 检查清单
 
 <!--
-Carefully read and work through this check list in order to prevent the most common mistakes and misuse of youtube-dl:
-- First of, make sure you are using the latest version of youtube-dl. Run `youtube-dl --version` and ensure your version is 2021.12.17. If it's not, see https://yt-dl.org/update on how to update. Issues with outdated version will be REJECTED.
-- Make sure that all provided video/audio/playlist URLs (if any) are alive and playable in a browser.
-- Make sure that all URLs and arguments with special characters are properly quoted or escaped as explained in http://yt-dl.org/escape.
-- Search the bugtracker for similar issues: http://yt-dl.org/search-issues. DO NOT post duplicates.
-- Read bugs section in FAQ: http://yt-dl.org/reporting
-- Finally, put x into all relevant boxes (like this [x])
+请仔细阅读并逐项完成本检查清单,以避免最常见的错误和 youtube-dl 误用:
+- 首先,确认你使用的是最新版 youtube-dl。运行 `youtube-dl --version`,确认版本为 2021.12.17。若不是,参见 https://yt-dl.org/update 了解如何更新。使用过时版本提交的 issue 将被拒绝(REJECTED)。
+- 确认提供的所有视频/音频/播放列表 URL(如有)在浏览器中仍然有效且可播放。
+- 确认所有含特殊字符的 URL 和参数均已按 http://yt-dl.org/escape 的说明正确加引号或转义。
+- 在 bugtracker 中搜索过类似 issue:http://yt-dl.org/search-issues。不要提交重复 issue。
+- 阅读 FAQ 中的 Bugs 一节:http://yt-dl.org/reporting
+- 最后,在所有相关方框中填入 x(形如 [x])
 -->
 
-- [ ] I'm reporting a broken site support issue
-- [ ] I've verified that I'm running youtube-dl version **2021.12.17**
-- [ ] I've checked that all provided URLs are alive and playable in a browser
-- [ ] I've checked that all URLs and arguments with special characters are properly quoted or escaped
-- [ ] I've searched the bugtracker for similar bug reports including closed ones
-- [ ] I've read bugs section in FAQ
+- [ ] 我提交的是一个站点损坏支持问题
+- [ ] 我已确认运行的是 youtube-dl **2021.12.17** 版本
+- [ ] 我已确认提供的所有 URL 在浏览器中均有效且可播放
+- [ ] 我已确认所有含特殊字符的 URL 和参数均已正确加引号或转义
+- [ ] 我已在 bugtracker(含已关闭 issue)中搜索过类似的 Bug 报告
+- [ ] 我已阅读 FAQ 中的 Bugs 一节
 
 
-## Verbose log
+## 详细日志
 
 <!--
-Provide the complete verbose output of youtube-dl that clearly demonstrates the problem.
-Add the `-v` flag to your command line you run youtube-dl with (`youtube-dl -v <your command line>`), copy the WHOLE output and insert it below. It should look similar to this:
+提供能清楚展示问题的 youtube-dl 完整详细输出。
+在你运行 youtube-dl 的命令行中加上 `-v` 标志(`youtube-dl -v <你的命令行>`),复制全部输出并粘贴到下方。输出应类似:
  [debug] System config: []
  [debug] User config: []
  [debug] Command-line args: [u'-v', u'http://www.youtube.com/watch?v=BaW_jenozKcj']
@@ -51,15 +53,15 @@ Add the `-v` flag to your command line you run youtube-dl with (`youtube-dl -v <
 -->
 
 ```
-PASTE VERBOSE LOG HERE
+在此粘贴详细日志
 ```
 
 
-## Description
+## 问题描述
 
 <!--
-Provide an explanation of your issue in an arbitrary form. Please make sure the description is worded well enough to be understood, see https://github.com/ytdl-org/youtube-dl#is-the-description-of-the-issue-itself-sufficient. Provide any additional information, suggested solution and as much context and examples as possible.
-If work on your issue requires account credentials please provide them or explain how one can obtain them.
+请以任意形式说明你的问题。请确保描述措辞足以让人理解,参见 https://github.com/ytdl-org/youtube-dl#is-the-description-of-the-issue-itself-sufficient。提供一切额外信息、建议的解决方案,以及尽可能多的上下文和示例。
+如果处理你的 issue 需要账号凭据,请提供它们或说明如何获取。
 -->
 
-WRITE DESCRIPTION HERE
+在此填写问题描述
