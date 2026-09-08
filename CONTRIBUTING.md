@@ -1,4 +1,9 @@
-**Please include the full output of youtube-dl when run with `-v`**, i.e. **add** `-v` flag to **your command line**, copy the **whole** output and post it in the issue body wrapped in \`\`\` for better formatting. It should look similar to this:
+> 🌐 本文档由 [ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl) 翻译,英文原版见原项目。
+>
+> 📝 注:原文件超过 10000 字符,本文仅翻译核心章节;完整细节请参阅英文原版 [CONTRIBUTING.md](https://github.com/ytdl-org/youtube-dl/blob/master/CONTRIBUTING.md)。
+
+**提交 issue 时请附带 `-v` 参数运行 youtube-dl 的完整输出**,即在你的**命令行**中**加上** `-v` 标志,复制**全部**输出,用 \`\`\` 包裹后贴到 issue 正文里。输出应类似:
+
 ```
 $ youtube-dl -v <your command line>
 [debug] System config: []
@@ -12,103 +17,77 @@ $ youtube-dl -v <your command line>
 [debug] Proxy map: {}
 ...
 ```
-**Do not post screenshots of verbose logs; only plain text is acceptable.**
 
-The output (including the first lines) contains important debugging information. Issues without the full output are often not reproducible and therefore do not get solved in short order, if ever.
+**不要贴详细日志的截图,只接受纯文本。**
 
-Please re-read your issue once again to avoid a couple of common mistakes (you can and should use this as a checklist):
+输出(包括开头几行)包含重要的调试信息。缺少完整输出的 issue 往往无法复现,因此很难被解决。
 
-### Is the description of the issue itself sufficient?
+提交前请把你的 issue 再读一遍,避开以下常见错误(可以把这当成检查清单):
 
-We often get issue reports that we cannot really decipher. While in most cases we eventually get the required information after asking back multiple times, this poses an unnecessary drain on our resources. Many contributors, including myself, are also not native speakers, so we may misread some parts.
+### 描述本身是否足够清楚?
 
-So please elaborate on what feature you are requesting, or what bug you want to be fixed. Make sure that it's obvious
+请详细说明你要请求的功能或想修复的 Bug,确保能一眼看出:
 
-- What the problem is
-- How it could be fixed
-- How your proposed solution would look like
+- 问题是什么
+- 可能如何修复
+- 你设想的解决方案长什么样
 
-If your report is shorter than two lines, it is almost certainly missing some of these, which makes it hard for us to respond to it. We're often too polite to close the issue outright, but the missing info makes misinterpretation likely. As a committer myself, I often get frustrated by these issues, since the only possible way for me to move forward on them is to ask for clarification over and over.
+对 Bug 报告而言,这意味着报告必须包含加 `-v` 参数后的*完整*输出。**站点支持请求必须包含示例 URL**,例如 `https://www.youtube.com/watch?v=BaW_jenozKc`;视频服务的主页(如 `https://www.youtube.com/`)*不是*示例 URL。
 
-For bug reports, this means that your report should contain the *complete* output of youtube-dl when called with the `-v` flag. The error message you get for (most) bugs even says so, but you would not believe how many of our bug reports do not contain this information.
+### 用的是最新版本吗?
 
-If your server has multiple IPs or you suspect censorship, adding `--call-home` may be a good idea to get more diagnostics. If the error is `ERROR: Unable to extract ...` and you cannot reproduce it from multiple countries, add `--dump-pages` (warning: this will yield a rather large output, redirect it to the file `log.txt` by adding `>log.txt 2>&1` to your command-line) or upload the `.dump` files you get when you add `--write-pages` [somewhere](https://gist.github.com/).
+报告任何 issue 前先运行 `youtube-dl -U` 确认已是最新。收到的报告中约 20% 的问题其实早已修复。功能请求同理。
 
-**Site support requests must contain an example URL**. An example URL is a URL you might want to download, like `https://www.youtube.com/watch?v=BaW_jenozKc`. There should be an obvious video present. Except under very special circumstances, the main page of a video service (e.g. `https://www.youtube.com/`) is *not* an example URL.
+### 问题是否已被报告过?
 
-###  Are you using the latest version?
+先在 [GitHub Issues](https://github.com/ytdl-org/youtube-dl/search?type=Issues) 中搜索。若已存在,可以补充"我在版本 2015.01.01 也遇到此问题,补充信息如下:……"之类的内容,新的回复常常能推动旧 issue 快速处理。
 
-Before reporting any issue, type `youtube-dl -U`. This should report that you're up-to-date. About 20% of the reports we receive are already fixed, but people are using outdated versions. This goes for feature requests as well.
+### 现有选项为什么不够用?
 
-###  Is the issue already documented?
+请求新功能前,先看一眼[支持的选项列表](https://github.com/ytdl-org/youtube-dl/blob/master/README.md#options)——很多功能请求要的东西其实已经存在!请说明现有类似选项*为什么*解决不了你的问题。
 
-Make sure that someone has not already opened the issue you're trying to open. Search at the top of the window or browse the [GitHub Issues](https://github.com/ytdl-org/youtube-dl/search?type=Issues) of this repository. If there is an issue, feel free to write something along the lines of "This affects me as well, with version 2015.01.01. Here is some more information on the issue: ...". While some issues may be old, a new post into them often spurs rapid activity.
+### Bug 报告的上下文足够吗?
 
-###  Why are existing options not enough?
+每个不涉及"新增站点支持"的功能请求都应包含使用场景,说明缺失的功能在什么情况下有用。避免把大问题拆成"一步简单、一步不可能"的两步请求。
 
-Before requesting a new feature, please have a quick peek at [the list of supported options](https://github.com/ytdl-org/youtube-dl/blob/master/README.md#options). Many feature requests are for features that actually exist already! Please, absolutely do show off your work in the issue report and detail how the existing similar options do *not* solve your problem.
+### 是否只涉及一个问题?
 
-###  Is there enough context in your bug report?
+不要把一堆问题塞进同一个 ticket:修了其中一个的人无法关闭整个 issue。站点支持请求一次只应针对一个站点(同一域名、同一后端技术),Bug 报告也不要和功能请求混在一起。
 
-People want to solve problems, and often think they do us a favor by breaking down their larger problems (e.g. wanting to skip already downloaded files) to a specific request (e.g. requesting us to look whether the file exists before downloading the info page). However, what often happens is that they break down the problem into two steps: One simple, and one impossible (or extremely complicated one).
+### 会有人需要这个功能吗?
 
-We are then presented with a very complicated request when the original problem could be solved far easier, e.g. by recording the downloaded video IDs in a separate file. To avoid this, you must include the greater context where it is non-obvious. In particular, every feature request that does not consist of adding support for a new site should contain a use case scenario that explains in what situation the missing feature would be useful.
+只提交你(或你能亲自联系到的朋友)确实需要的功能,不要因为"听起来不错"就提。
 
-###  Does the issue involve one problem, and one problem only?
+### 你的问题确实与 youtube-dl 有关吗?
 
-Some of our users seem to think there is a limit of issues they can or should open. There is no limit of issues they can or should open. While it may seem appealing to be able to dump all your issues into one ticket, that means that someone who solves one of your issues cannot mark the issue as closed. Typically, reporting a bunch of issues leads to the ticket lingering since nobody wants to attack that behemoth, until someone mercifully splits the issue into multiple ones.
+有些报告其实来自其他应用或报告者自己的程序。如果你在用 youtube-dl 的图形界面(UI),请把 Bug 报告给该 UI 的维护者;如果你确信问题出在 youtube-dl 本身,欢迎报告。
 
-In particular, every site support request issue should only pertain to services at one site (generally under a common domain, but always using the same backend technology). Do not request support for vimeo user videos, White house podcasts, and Google Plus pages in the same issue. Also, make sure that you don't post bug reports alongside feature requests. As a rule of thumb, a feature request does not include outputs of youtube-dl that are not immediately related to the feature at hand. Do not post reports of a network error alongside the request for a new video service.
+# 开发者说明
 
-###  Is anyone going to need the feature?
+大多数用户无需自行构建,可直接[下载构建版本](https://ytdl-org.github.io/youtube-dl/download.html)。
 
-Only post features that you (or an incapacitated friend you can personally talk to) require. Do not post features because they seem like a good idea. If they are really useful, they will be requested by someone who requires them.
-
-###  Is your question about youtube-dl?
-
-It may sound strange, but some bug reports we receive are completely unrelated to youtube-dl and relate to a different, or even the reporter's own, application. Please make sure that you are actually using youtube-dl. If you are using a UI for youtube-dl, report the bug to the maintainer of the actual application providing the UI. On the other hand, if your UI for youtube-dl fails in some way you believe is related to youtube-dl, by all means, go ahead and report the bug.
-
-# DEVELOPER INSTRUCTIONS
-
-Most users do not need to build youtube-dl and can [download the builds](https://ytdl-org.github.io/youtube-dl/download.html) or get them from their distribution.
-
-To run youtube-dl as a developer, you don't need to build anything either. Simply execute
+开发者运行 youtube-dl 也无需构建,直接执行:
 
     python -m youtube_dl
 
-To run the test, simply invoke your favorite test runner, or execute a test file directly; any of the following work:
+运行测试,用你喜欢的测试运行器或直接执行测试文件:
 
     python -m unittest discover
     python test/test_download.py
     nosetests
 
-See item 6 of [new extractor tutorial](#adding-support-for-a-new-site) for how to run extractor specific test cases.
+自行构建需要:python、make(仅支持 GNU make)、pandoc、zip、nosetests。
 
-If you want to create a build of youtube-dl yourself, you'll need
+### 为新站点添加支持
 
-* python
-* make (only GNU make is supported)
-* pandoc
-* zip
-* nosetests
+首先**务必确认**该站点**不专门从事[版权侵权](README.md#can-you-add-support-for-this-anime-video-site-or-site-which-shows-current-movies-for-free)**。youtube-dl **不支持**此类站点,相关 PR **将被拒绝**。
 
-### Adding support for a new site
+确认站点合法分发内容后,按以下步骤(假设你的服务叫 `yourextractor`):
 
-If you want to add support for a new site, first of all **make sure** this site is **not dedicated to [copyright infringement](README.md#can-you-add-support-for-this-anime-video-site-or-site-which-shows-current-movies-for-free)**. youtube-dl does **not support** such sites thus pull requests adding support for them **will be rejected**.
-
-After you have ensured this site is distributing its content legally, you can follow this quick list (assuming your service is called `yourextractor`):
-
-1. [Fork this repository](https://github.com/ytdl-org/youtube-dl/fork)
-2. Check out the source code with:
-
-        git clone git@github.com:YOUR_GITHUB_USERNAME/youtube-dl.git
-
-3. Start a new git branch with
-
-        cd youtube-dl
-        git checkout -b yourextractor
-
-4. Start with this simple template and save it to `youtube_dl/extractor/yourextractor.py`:
+1. [Fork 本仓库](https://github.com/ytdl-org/youtube-dl/fork)
+2. 检出源码:`git clone git@github.com:YOUR_GITHUB_USERNAME/youtube-dl.git`
+3. 新建分支:`cd youtube-dl && git checkout -b yourextractor`
+4. 以如下模板为起点,保存到 `youtube_dl/extractor/yourextractor.py`:
 
     ```python
     # coding: utf-8
@@ -150,159 +129,81 @@ After you have ensured this site is distributing its content legally, you can fo
                 # TODO more properties (see youtube_dl/extractor/common.py)
             }
     ```
-5. Add an import in [`youtube_dl/extractor/extractors.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/extractors.py). This makes the extractor available for use, as long as the class ends with `IE`.
-6. Run `python test/test_download.py TestDownload.test_YourExtractor`. This *should fail* at first, but you can continually re-run it until you're done. If you decide to add more than one test, then rename ``_TEST`` to ``_TESTS`` and make it into a list of dictionaries. The tests will then be named `TestDownload.test_YourExtractor`, `TestDownload.test_YourExtractor_1`, `TestDownload.test_YourExtractor_2`, etc. Note that tests with `only_matching` key in test's dict are not counted in.
-7. Have a look at [`youtube_dl/extractor/common.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/common.py) for possible helper methods and a [detailed description of what your extractor should and may return](https://github.com/ytdl-org/youtube-dl/blob/7f41a598b3fba1bcab2817de64a08941200aa3c8/youtube_dl/extractor/common.py#L94-L303). Add tests and code for as many as you want.
-8. Make sure your code follows [youtube-dl coding conventions](#youtube-dl-coding-conventions) and check the code with [flake8](https://flake8.pycqa.org/en/latest/index.html#quickstart):
 
-        $ flake8 youtube_dl/extractor/yourextractor.py
-
-9. Make sure your code works under all [Python](https://www.python.org/) versions claimed supported by youtube-dl, namely 2.6, 2.7, and 3.2+.
-10. When the tests pass, [add](https://git-scm.com/docs/git-add) the new files and [commit](https://git-scm.com/docs/git-commit) them and [push](https://git-scm.com/docs/git-push) the result, like this:
+5. 在 [`youtube_dl/extractor/extractors.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/extractors.py) 中添加 import(类名以 `IE` 结尾即可被发现)
+6. 运行 `python test/test_download.py TestDownload.test_YourExtractor`,起初*会失败*,反复修改直到通过。多个测试时把 `_TEST` 改成 `_TESTS` 并用字典列表;含 `only_matching` 的测试不计入命名
+7. 参考 [`youtube_dl/extractor/common.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/common.py) 的辅助方法及[信息字典的详细说明](https://github.com/ytdl-org/youtube-dl/blob/7f41a598b3fba1bcab2817de64a08941200aa3c8/youtube_dl/extractor/common.py#L94-L303),尽量多写测试和代码
+8. 确保代码符合 [youtube-dl 编码规范](#youtube-dl-编码规范)并通过 [flake8](https://flake8.pycqa.org/en/latest/index.html#quickstart) 检查:`flake8 youtube_dl/extractor/yourextractor.py`
+9. 确保代码在 youtube-dl 声称支持的所有 [Python](https://www.python.org/) 版本(2.6、2.7、3.2+)下都能工作
+10. 测试通过后,add + commit + push:
 
         $ git add youtube_dl/extractor/extractors.py
         $ git add youtube_dl/extractor/yourextractor.py
         $ git commit -m '[yourextractor] Add new extractor'
         $ git push origin yourextractor
 
-11. Finally, [create a pull request](https://help.github.com/articles/creating-a-pull-request). We'll then review and merge it.
+11. 最后[创建 pull request](https://help.github.com/articles/creating-a-pull-request),等待审核合并
 
-In any case, thank you very much for your contributions!
+无论如何,非常感谢你的贡献!
 
-## youtube-dl coding conventions
+## youtube-dl 编码规范
 
-This section introduces a guide lines for writing idiomatic, robust and future-proof extractor code.
+本节给出编写地道、健壮、面向未来的提取器代码的指南。
 
-Extractors are very fragile by nature since they depend on the layout of the source data provided by 3rd party media hosters out of your control and this layout tends to change. As an extractor implementer your task is not only to write code that will extract media links and metadata correctly but also to minimize dependency on the source's layout and even to make the code foresee potential future changes and be ready for that. This is important because it will allow the extractor not to break on minor layout changes thus keeping old youtube-dl versions working. Even though this breakage issue is easily fixed by emitting a new version of youtube-dl with a fix incorporated, all the previous versions become broken in all repositories and distros' packages that may not be so prompt in fetching the update from us. Needless to say, some non rolling release distros may never receive an update at all.
+提取器天然脆弱:它依赖你无法控制的第三方媒体站点的页面布局,而布局会变。你的任务不仅是正确提取媒体链接和元数据,还要最小化对源布局的依赖,甚至预判未来的变化。这样提取器才不会因小的布局改动而失效,让旧版本 youtube-dl 继续工作——很多发行版的包更新并不及时,甚至可能永远收不到更新。
 
-### Mandatory and optional metafields
+### 必填与可选元字段
 
-For extraction to work youtube-dl relies on metadata your extractor extracts and provides to youtube-dl expressed by an [information dictionary](https://github.com/ytdl-org/youtube-dl/blob/7f41a598b3fba1bcab2817de64a08941200aa3c8/youtube_dl/extractor/common.py#L94-L303) or simply *info dict*. Only the following meta fields in the *info dict* are considered mandatory for a successful extraction process by youtube-dl:
+youtube-dl 依赖提取器提供的[信息字典](https://github.com/ytdl-org/youtube-dl/blob/7f41a598b3fba1bcab2817de64a08941200aa3c8/youtube_dl/extractor/common.py#L94-L303)(*info dict*)。成功提取只要求以下元字段:
 
- - `id` (media identifier)
- - `title` (media title)
- - `url` (media download URL) or `formats`
+ - `id`(媒体标识)
+ - `title`(媒体标题)
+ - `url`(媒体下载地址)或 `formats`
 
-In fact only the last option is technically mandatory (i.e. if you can't figure out the download location of the media the extraction does not make any sense). But by convention youtube-dl also treats `id` and `title` as mandatory. Thus the aforementioned metafields are the critical data that the extraction does not make any sense without and if any of them fail to be extracted then the extractor is considered completely broken.
+严格说只有最后一项在技术上必填,但按惯例 `id` 和 `title` 也视为必填;任一必填字段提取失败,即视为提取器彻底损坏。
 
-[Any field](https://github.com/ytdl-org/youtube-dl/blob/7f41a598b3fba1bcab2817de64a08941200aa3c8/youtube_dl/extractor/common.py#L188-L303) apart from the aforementioned ones are considered **optional**. That means that extraction should be **tolerant** to situations when sources for these fields can potentially be unavailable (even if they are always available at the moment) and **future-proof** in order not to break the extraction of general purpose mandatory fields.
+其余[任何字段](https://github.com/ytdl-org/youtube-dl/blob/7f41a598b3fba1bcab2817de64a08941200aa3c8/youtube_dl/extractor/common.py#L188-L303)都是**可选**的:提取过程对这些字段的来源缺失必须**容错**(即使当前总能取到),并保持**面向未来**,以免连累必填字段的提取。
 
-#### Example
+#### 示例
 
-Say you have some source dictionary `meta` that you've fetched as JSON with HTTP request and it has a key `summary`:
-
-```python
-meta = self._download_json(url, video_id)
-```
-    
-Assume at this point `meta`'s layout is:
-
-```python
-{
-    ...
-    "summary": "some fancy summary text",
-    ...
-}
-```
-
-Assume you want to extract `summary` and put it into the resulting info dict as `description`. Since `description` is an optional meta field you should be ready that this key may be missing from the `meta` dict, so that you should extract it like:
+可选字段要用容错写法。`description` 是可选字段,应写成:
 
 ```python
 description = meta.get('summary')  # correct
 ```
 
-and not like:
+而不是:
 
 ```python
 description = meta['summary']  # incorrect
 ```
 
-The latter will break extraction process with `KeyError` if `summary` disappears from `meta` at some later time but with the former approach extraction will just go ahead with `description` set to `None` which is perfectly fine (remember `None` is equivalent to the absence of data).
+后者在 `summary` 消失时会抛 `KeyError` 中断提取;前者只是让 `description` 为 `None` 后继续(`None` 等价于数据缺失)。
 
-Similarly, you should pass `fatal=False` when extracting optional data from a webpage with `_search_regex`, `_html_search_regex` or similar methods, for instance:
+同理,用 `_search_regex`、`_html_search_regex` 等方法提取可选数据时传 `fatal=False`,失败时仅告警并继续;也可传 `default=<回退值>`,失败时静默继续。
 
-```python
-description = self._search_regex(
-    r'<span[^>]+id="title"[^>]*>([^<]+)<',
-    webpage, 'description', fatal=False)
-```
+### 提供回退方案
 
-With `fatal` set to `False` if `_search_regex` fails to extract `description` it will emit a warning and continue extraction.
-
-You can also pass `default=<some fallback value>`, for example:
-
-```python
-description = self._search_regex(
-    r'<span[^>]+id="title"[^>]*>([^<]+)<',
-    webpage, 'description', default=None)
-```
-
-On failure this code will silently continue the extraction with `description` set to `None`. That is useful for metafields that may or may not be present.
- 
-### Provide fallbacks
-
-When extracting metadata try to do so from multiple sources. For example if `title` is present in several places, try extracting from at least some of them. This makes it more future-proof in case some of the sources become unavailable.
-
-#### Example
-
-Say `meta` from the previous example has a `title` and you are about to extract it. Since `title` is a mandatory meta field you should end up with something like:
-
-```python
-title = meta['title']
-```
-
-If `title` disappears from `meta` in future due to some changes on the hoster's side the extraction would fail since `title` is mandatory. That's expected.
-
-Assume that you have some another source you can extract `title` from, for example `og:title` HTML meta of a `webpage`. In this case you can provide a fallback scenario:
+提取元数据尽量从多个来源获取,例如 `title` 在多处出现时至少尝试其中几处,某处失效仍可工作:
 
 ```python
 title = meta.get('title') or self._og_search_title(webpage)
 ```
 
-This code will try to extract from `meta` first and if it fails it will try extracting `og:title` from a `webpage`.
+### 正则表达式
 
-### Regular expressions
+#### 不用的组不要捕获
 
-#### Don't capture groups you don't use
-
-Capturing group must be an indication that it's used somewhere in the code. Any group that is not used must be non capturing.
-
-##### Example
-
-Don't capture id attribute name here since you can't use it for anything anyway.
-
-Correct:
+捕获组必须表示"该结果在代码中被使用",否则用非捕获组 `(?:...)`:
 
 ```python
-r'(?:id|ID)=(?P<id>\d+)'
+r'(?:id|ID)=(?P<id>\d+)'   # correct
+r'(id|ID)=(?P<id>\d+)'     # incorrect
 ```
 
-Incorrect:
-```python
-r'(id|ID)=(?P<id>\d+)'
-```
+#### 正则要宽松灵活
 
-
-#### Make regular expressions relaxed and flexible
-
-When using regular expressions try to write them fuzzy, relaxed and flexible, skipping insignificant parts that are more likely to change, allowing both single and double quotes for quoted values and so on.
- 
-##### Example
-
-Say you need to extract `title` from the following HTML code:
-
-```html
-<span style="position: absolute; left: 910px; width: 90px; float: right; z-index: 9999;" class="title">some fancy title</span>
-```
-
-The code for that task should look similar to:
-
-```python
-title = self._search_regex(
-    r'<span[^>]+class="title"[^>]*>([^<]+)', webpage, 'title')
-```
-
-Or even better:
+跳过容易变化的无关部分,引号兼容单双引号等。匹配 `title` 时:
 
 ```python
 title = self._search_regex(
@@ -310,62 +211,19 @@ title = self._search_regex(
     webpage, 'title', group='title')
 ```
 
-Note how you tolerate potential changes in the `style` attribute's value or switch from using double quotes to single for `class` attribute: 
+而不要把 `style` 属性的值原样写死进正则。
 
-The code definitely should not look like:
+### 长行策略
 
-```python
-title = self._search_regex(
-    r'<span style="position: absolute; left: 910px; width: 90px; float: right; z-index: 9999;" class="title">(.*?)</span>',
-    webpage, 'title', group='title')
-```
+代码行软性限制 80 字符,以不损害可读性为前提。**永远**不要为了凑行宽把 URL 等常被复制的长字符串拆成多行。
 
-### Long lines policy
+### 内联值
 
-There is a soft limit to keep lines of code under 80 characters long. This means it should be respected if possible and if it does not make readability and code maintenance worse.
+提取变量以消除重复、提升复杂表达式可读性是可以的,但不要把只用一次的变量挪到文件另一头,破坏代码的线性阅读流。
 
-For example, you should **never** split long string literals like URLs or some other often copied entities over multiple lines to fit this limit:
+### 合并回退
 
-Correct:
-
-```python
-'https://www.youtube.com/watch?v=FqZTN594JQw&list=PLMYEtVRpaqY00V9W81Cwmzp6N6vZqfUKD4'
-```
-
-Incorrect:
-
-```python
-'https://www.youtube.com/watch?v=FqZTN594JQw&list='
-'PLMYEtVRpaqY00V9W81Cwmzp6N6vZqfUKD4'
-```
-
-### Inline values
-
-Extracting variables is acceptable for reducing code duplication and improving readability of complex expressions. However, you should avoid extracting variables used only once and moving them to opposite parts of the extractor file, which makes reading the linear flow difficult.
-
-#### Example
-
-Correct:
-
-```python
-title = self._html_search_regex(r'<title>([^<]+)</title>', webpage, 'title')
-```
-
-Incorrect:
-
-```python
-TITLE_RE = r'<title>([^<]+)</title>'
-# ...some lines of code...
-title = self._html_search_regex(TITLE_RE, webpage, 'title')
-```
-
-### Collapse fallbacks
-
-Multiple fallback values can quickly become unwieldy. Collapse multiple fallback values into a single expression via a list of patterns.
-
-#### Example
-
-Good:
+多个回退值应合并为单个表达式:
 
 ```python
 description = self._html_search_meta(
@@ -373,62 +231,29 @@ description = self._html_search_meta(
     webpage, 'description', default=None)
 ```
 
-Unwieldy:
+支持模式列表的方法:`_search_regex`、`_html_search_regex`、`_og_search_property`、`_html_search_meta`。
 
-```python
-description = (
-    self._og_search_description(webpage, default=None)
-    or self._html_search_meta('description', webpage, default=None)
-    or self._html_search_meta('twitter:description', webpage, default=None))
-```
+### 尾随括号
 
-Methods supporting list of patterns are: `_search_regex`, `_html_search_regex`, `_og_search_property`, `_html_search_meta`.
+尾随括号始终放在最后一个参数之后,不要单独成行。
 
-### Trailing parentheses
+### 使用便捷转换与解析函数
 
-Always move trailing parentheses after the last argument.
+所有提取出的数值都用 [`youtube_dl/utils.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/utils.py) 的安全函数包裹:`int_or_none`、`float_or_none`;字符串转数字也用它们。URL 用 `url_or_none`,JSON 元数据用 `try_get`,统一 `upload_date`/`YYYYMMDD` 用 `unified_strdate`,统一 `timestamp` 用 `unified_timestamp`,文件大小用 `parse_filesize`,计数字段用 `parse_count`,分辨率用 `parse_resolution`,时长用 `parse_duration`,年龄限制用 `parse_age_limit`。更多便捷函数请自行探索 [`youtube_dl/utils.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/utils.py)。
 
-#### Example
+#### 更多示例
 
-Correct:
+##### 从已解析 JSON 中安全提取可选 description
 
-```python
-    lambda x: x['ResultSet']['Result'][0]['VideoUrlSet']['VideoUrl'],
-    list)
-```
-
-Incorrect:
-
-```python
-    lambda x: x['ResultSet']['Result'][0]['VideoUrlSet']['VideoUrl'],
-    list,
-)
-```
-
-### Use convenience conversion and parsing functions
-
-Wrap all extracted numeric data into safe functions from [`youtube_dl/utils.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/utils.py): `int_or_none`, `float_or_none`. Use them for string to number conversions as well.
-
-Use `url_or_none` for safe URL processing.
-
-Use `try_get` for safe metadata extraction from parsed JSON.
-
-Use `unified_strdate` for uniform `upload_date` or any `YYYYMMDD` meta field extraction, `unified_timestamp` for uniform `timestamp` extraction, `parse_filesize` for `filesize` extraction, `parse_count` for count meta fields extraction, `parse_resolution`, `parse_duration` for `duration` extraction, `parse_age_limit` for `age_limit` extraction. 
-
-Explore [`youtube_dl/utils.py`](https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/utils.py) for more useful convenience functions.
-
-#### More examples
-
-##### Safely extract optional description from parsed JSON
 ```python
 description = try_get(response, lambda x: x['result']['video'][0]['summary'], compat_str)
 ```
 
-##### Safely extract more optional metadata
+##### 安全提取更多可选元数据
+
 ```python
 video = try_get(response, lambda x: x['result']['video'][0], dict) or {}
 description = video.get('summary')
 duration = float_or_none(video.get('durationMs'), scale=1000)
 view_count = int_or_none(video.get('views'))
 ```
-

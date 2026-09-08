@@ -1,4 +1,11 @@
-# Supported sites
+# 支持的站点
+
+> 🌐 本文档由 [ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl) 翻译,英文原版见原项目。
+>
+> 📝 注:本文件由 `devscripts/make_supportedsites.py` 自动生成,是 youtube-dl 支持的站点总表(超过 1200 项)。站点标识与描述保留英文原名,便于搜索和对照原版文档;正文说明部分已翻译如下。
+
+youtube-dl 目前支持下列站点。名称后带冒号的是同一站点的不同入口(如频道、播放列表、单视频等提取器变体)。
+
  - **1tv**: Первый канал
  - **20min**
  - **220.ro**
