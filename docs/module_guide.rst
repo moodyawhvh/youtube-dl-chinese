@@ -1,7 +1,9 @@
-Using the ``youtube_dl`` module
-===============================
+> 🌐 本文档由 [ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl) 翻译,英文原版见原项目。
 
-When using the ``youtube_dl`` module, you start by creating an instance of :class:`YoutubeDL` and adding all the available extractors:
+使用 ``youtube_dl`` 模块
+========================
+
+使用 ``youtube_dl`` 模块时,先创建一个 :class:`YoutubeDL` 实例,并添加所有可用的提取器:
 
 .. code-block:: python
 
@@ -9,10 +11,10 @@ When using the ``youtube_dl`` module, you start by creating an instance of :clas
     >>> ydl = YoutubeDL()
     >>> ydl.add_default_info_extractors()
 
-Extracting video information
-----------------------------
+提取视频信息
+------------
 
-You use the :meth:`YoutubeDL.extract_info` method for getting the video information, which returns a dictionary:
+使用 :meth:`YoutubeDL.extract_info` 方法获取视频信息,它会返回一个字典:
 
 .. code-block:: python
 
@@ -26,17 +28,17 @@ You use the :meth:`YoutubeDL.extract_info` method for getting the video informat
     >>> info['height'], info['width']
     (720, 1280)
 
-If you want to download or play the video you can get its url:
+如果想下载或播放视频,可以获取它的 URL:
 
 .. code-block:: python
 
     >>> info['url']
     'https://...'
 
-Extracting playlist information
--------------------------------
+提取播放列表信息
+----------------
 
-The playlist information is extracted in a similar way, but the dictionary is a bit different:
+播放列表信息的提取方式类似,但返回的字典略有不同:
 
 .. code-block:: python
 
@@ -48,7 +50,7 @@ The playlist information is extracted in a similar way, but the dictionary is a 
 
 
 
-You can access the videos in the playlist with the ``entries`` field:
+可以通过 ``entries`` 字段访问播放列表中的视频:
 
 .. code-block:: python
 
@@ -64,4 +66,3 @@ You can access the videos in the playlist with the ``entries`` field:
     Video #7: Coding a better government
     Video #8: The era of open innovation
     Video #9: The currency of the new economy is trust
-
